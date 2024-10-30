@@ -23,7 +23,7 @@ namespace WarehouseManager.BusinessLogic.Services
 
 		public async Task<Order> GetOrderByIdAsync(Guid id)
 		{
-			return await _unitOfWork.Orders.GetByIdAsync(id);
+			return await _unitOfWork.Orders.GetByIdWithItemsAsync(id);
 		}
 
 		public async Task CreateOrderAsync(Order order)

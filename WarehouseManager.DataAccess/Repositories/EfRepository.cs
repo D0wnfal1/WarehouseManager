@@ -34,10 +34,18 @@ namespace WarehouseManager.DataAccess.EfRepository
 			await _context.SaveChangesAsync();
 		}
 
+
+		public async Task<Order> GetByIdWithItemsAsync(Guid id)
+		{
+			return await _context.Orders
+				.Include(o => o.Items)
+				.FirstOrDefaultAsync(o => o.Id == id);
+		}
+
 		public async Task<IEnumerable<Order>> GetAllWithItemsAsync()
 		{
 			return await _context.Orders
-				.Include(o => o.Items) 
+				.Include(o => o.Items)
 				.ToListAsync();
 		}
 	}
