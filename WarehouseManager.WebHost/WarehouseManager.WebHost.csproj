@@ -17,11 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\WarehouseManager.BusinessLogic\WarehouseManager.BusinessLogic.csproj" />
+    <ProjectReference Include="..\WarehouseManager.DataAccess\WarehouseManager.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WarehouseManager.DataAccess\WarehouseManager.DataAccess.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

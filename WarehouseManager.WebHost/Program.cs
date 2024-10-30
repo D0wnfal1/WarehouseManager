@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using WarehouseManager.BusinessLogic;
+using WarehouseManager.BusinessLogic.Services;
 using WarehouseManager.DataAccess;
+using WarehouseManager.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,11 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<WarehouseDbContext>(options => {
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPurchaseQueueService, PurchaseQueueService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
