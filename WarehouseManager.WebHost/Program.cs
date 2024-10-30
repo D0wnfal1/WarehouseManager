@@ -5,6 +5,7 @@ using WarehouseManager.DataAccess;
 using WarehouseManager.DataAccess.EfRepository;
 using WarehouseManager.DataAccess.Repositories.IRepositories;
 using System.Reflection;
+using WarehouseManager.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<WarehouseDbContext>(options =>
 
 // Dependency Injection for Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPurchaseQueueService, PurchaseQueueService>();

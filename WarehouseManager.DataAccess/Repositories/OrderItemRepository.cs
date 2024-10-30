@@ -8,7 +8,7 @@ using WarehouseManager.DataAccess.Repositories.IRepositories;
 
 namespace WarehouseManager.DataAccess.Repository
 {
-    public class OrderItemRepository : EfRepository<OrderItem>, IOrderItemRepository
+    public class OrderItemRepository : EfRepository<OrderItem>
 	{
 		private readonly WarehouseDbContext _context;
 		public OrderItemRepository(WarehouseDbContext context) : base(context) { }

@@ -33,20 +33,5 @@ namespace WarehouseManager.DataAccess.EfRepository
 			_context.Set<T>().Remove(entity);
 			await _context.SaveChangesAsync();
 		}
-
-
-		public async Task<Order> GetByIdWithItemsAsync(Guid id)
-		{
-			return await _context.Orders
-				.Include(o => o.Items)
-				.FirstOrDefaultAsync(o => o.Id == id);
-		}
-
-		public async Task<IEnumerable<Order>> GetAllWithItemsAsync()
-		{
-			return await _context.Orders
-				.Include(o => o.Items)
-				.ToListAsync();
-		}
 	}
 }

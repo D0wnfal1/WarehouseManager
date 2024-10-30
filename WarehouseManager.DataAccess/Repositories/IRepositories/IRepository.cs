@@ -13,7 +13,5 @@ namespace WarehouseManager.DataAccess.Repositories.IRepositories
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-		Task<IEnumerable<Order>> GetAllWithItemsAsync();
-		Task<Order> GetByIdWithItemsAsync(Guid id);
 	}
 }
