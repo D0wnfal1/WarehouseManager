@@ -14,6 +14,11 @@ public class ProductController : ControllerBase
 		_productService = productService;
 	}
 
+	/// <summary>
+	/// Retrieves a list of all products.
+	/// </summary>
+	/// <returns>List of ProductDto objects.</returns>
+	/// <response code="200">Returns the list of products.</response>
 	[HttpGet]
 	public async Task<IActionResult> GetProducts()
 	{
@@ -28,6 +33,12 @@ public class ProductController : ControllerBase
 		}));
 	}
 
+	/// <summary>
+	/// Creates a new product.
+	/// </summary>
+	/// <param name="productDto">ProductDto object containing the product details.</param>
+	/// <returns>ProductDto object of the created product.</returns>
+	/// <response code="201">Returns the created product.</response>
 	[HttpPost]
 	public async Task<IActionResult> CreateProduct([FromBody] ProductDto productDto)
 	{
@@ -39,11 +50,17 @@ public class ProductController : ControllerBase
 			Price = productDto.Price,
 			IsInPurchaseQueue = productDto.IsInPurchaseQueue
 		};
-
 		await _productService.AddProductAsync(product);
 		return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, productDto);
 	}
 
+	/// <summary>
+	/// Retrieves a product by its ID.
+	/// </summary>
+	/// <param name="id">Product ID.</param>
+	/// <returns>ProductDto object with the specified ID.</returns>
+	/// <response code="200">Returns the product.</response>
+	/// <response code="404">If the product is not found.</response>
 	[HttpGet("{id}")]
 	public async Task<IActionResult> GetProductById(Guid id)
 	{
@@ -58,10 +75,16 @@ public class ProductController : ControllerBase
 			Price = product.Price,
 			IsInPurchaseQueue = product.IsInPurchaseQueue
 		};
-
 		return Ok(productDto);
 	}
 
+	/// <summary>
+	/// Updates an existing product.
+	/// </summary>
+	/// <param name="id">Product ID.</param>
+	/// <param name="productDto">ProductDto object containing updated product details.</param>
+	/// <response code="204">If the product was successfully updated.</response>
+	/// <response code="404">If the product is not found.</response>
 	[HttpPut("{id}")]
 	public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] ProductDto productDto)
 	{
@@ -77,6 +100,11 @@ public class ProductController : ControllerBase
 		return NoContent();
 	}
 
+	/// <summary>
+	/// Deletes a product by its ID.
+	/// </summary>
+	/// <param name="id">Product ID.</param>
+	/// <response code="204">If the product was successfully deleted.</response>
 	[HttpDelete("{id}")]
 	public async Task<IActionResult> DeleteProduct(Guid id)
 	{
