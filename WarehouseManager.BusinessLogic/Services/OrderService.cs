@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using WarehouseManager.DataAccess.Models;
-using WarehouseManager.DataAccess.Repositories.IRepositories;
-using WarehouseManager.DataAccess.Repository;
+﻿using WarehouseManager.DataAccess.Repositories.IRepositories;
 
 namespace WarehouseManager.BusinessLogic.Services
 {

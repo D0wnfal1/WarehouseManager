@@ -12,9 +12,15 @@ namespace WarehouseManager.DataAccess.EfRepository
 			_context = context;
 		}
 
-		public async Task<T> GetByIdAsync(Guid id) => await _context.Set<T>().FindAsync(id);
+		public async Task<T> GetByIdAsync(Guid id)
+		{
+			return await _context.Set<T>().FindAsync(id);
+		}
 
-		public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+		public async Task<IEnumerable<T>> GetAllAsync()
+		{
+			return await _context.Set<T>().ToListAsync();
+		}
 
 		public async Task AddAsync(T entity)
 		{

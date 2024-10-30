@@ -5,7 +5,6 @@ using WarehouseManager.DataAccess;
 using WarehouseManager.DataAccess.EfRepository;
 using WarehouseManager.DataAccess.Repositories.IRepositories;
 using System.Reflection;
-using WarehouseManager.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

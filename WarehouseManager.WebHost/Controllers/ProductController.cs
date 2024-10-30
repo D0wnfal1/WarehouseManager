@@ -86,7 +86,7 @@ public class ProductController : ControllerBase
 	/// <response code="204">If the product was successfully updated.</response>
 	/// <response code="404">If the product is not found.</response>
 	[HttpPut("{id}")]
-	public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] ProductDto productDto)
+	public async Task<IActionResult> UpdateProduct(Guid id, [FromForm] ProductDto productDto)
 	{
 		var product = await _productService.GetProductByIdAsync(id);
 		if (product == null) return NotFound();

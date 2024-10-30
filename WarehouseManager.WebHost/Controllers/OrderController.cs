@@ -45,7 +45,7 @@ public class OrderController : ControllerBase
 	/// <returns>OrderDto object of the created order.</returns>
 	/// <response code="201">Returns the created order.</response>
 	[HttpPost]
-	public async Task<IActionResult> CreateOrder([FromBody] OrderDto orderDto)
+	public async Task<IActionResult> CreateOrder([FromForm] OrderDto orderDto)
 	{
 		var order = new Order
 		{
