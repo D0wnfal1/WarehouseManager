@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WarehouseManager.DataAccess.Models;
 
-namespace WarehouseManager.DataAccess.Models
+public class Order
 {
-	public class Order
+	public Guid Id { get; set; }
+
+	private DateTime _orderDate;
+
+	public DateTime OrderDate
 	{
-		public Guid Id { get; set; }
-		public DateTime OrderDate { get; set; }
-		public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
-		public bool IsCompleted { get; set; }
+		get => _orderDate;
+		set => _orderDate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
 	}
+
+	public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
+	public bool IsCompleted { get; set; }
 }

@@ -22,7 +22,7 @@ namespace WarehouseManager.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WarehouseManager.DataAccess.Models.Order", b =>
+            modelBuilder.Entity("Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,13 +43,13 @@ namespace WarehouseManager.DataAccess.Migrations
                         {
                             Id = new Guid("44444444-4444-4444-4444-444444444444"),
                             IsCompleted = false,
-                            OrderDate = new DateTime(2024, 10, 27, 14, 22, 2, 28, DateTimeKind.Local).AddTicks(6178)
+                            OrderDate = new DateTime(2024, 10, 27, 14, 32, 52, 706, DateTimeKind.Utc).AddTicks(4007)
                         },
                         new
                         {
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
                             IsCompleted = true,
-                            OrderDate = new DateTime(2024, 10, 29, 14, 22, 2, 28, DateTimeKind.Local).AddTicks(6225)
+                            OrderDate = new DateTime(2024, 10, 29, 14, 32, 52, 706, DateTimeKind.Utc).AddTicks(4054)
                         });
                 });
 
@@ -179,7 +179,7 @@ namespace WarehouseManager.DataAccess.Migrations
 
             modelBuilder.Entity("WarehouseManager.DataAccess.Models.OrderItem", b =>
                 {
-                    b.HasOne("WarehouseManager.DataAccess.Models.Order", "Order")
+                    b.HasOne("Order", "Order")
                         .WithMany("Items")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -207,7 +207,7 @@ namespace WarehouseManager.DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WarehouseManager.DataAccess.Models.Order", b =>
+            modelBuilder.Entity("Order", b =>
                 {
                     b.Navigation("Items");
                 });

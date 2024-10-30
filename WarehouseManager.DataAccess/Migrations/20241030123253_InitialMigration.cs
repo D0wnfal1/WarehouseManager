@@ -91,8 +91,8 @@ namespace WarehouseManager.DataAccess.Migrations
                 columns: new[] { "Id", "IsCompleted", "OrderDate" },
                 values: new object[,]
                 {
-                    { new Guid("44444444-4444-4444-4444-444444444444"), false, new DateTime(2024, 10, 27, 14, 22, 2, 28, DateTimeKind.Local).AddTicks(6178) },
-                    { new Guid("55555555-5555-5555-5555-555555555555"), true, new DateTime(2024, 10, 29, 14, 22, 2, 28, DateTimeKind.Local).AddTicks(6225) }
+                    { new Guid("44444444-4444-4444-4444-444444444444"), false, new DateTime(2024, 10, 27, 14, 32, 52, 706, DateTimeKind.Utc).AddTicks(4007) },
+                    { new Guid("55555555-5555-5555-5555-555555555555"), true, new DateTime(2024, 10, 29, 14, 32, 52, 706, DateTimeKind.Utc).AddTicks(4054) }
                 });
 
             migrationBuilder.InsertData(
