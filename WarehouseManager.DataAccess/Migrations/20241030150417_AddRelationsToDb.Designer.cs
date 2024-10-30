@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WarehouseManager.DataAccess;
@@ -11,9 +12,11 @@ using WarehouseManager.DataAccess;
 namespace WarehouseManager.DataAccess.Migrations
 {
     [DbContext(typeof(WarehouseDbContext))]
-    partial class WarehouseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241030150417_AddRelationsToDb")]
+    partial class AddRelationsToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,13 +46,13 @@ namespace WarehouseManager.DataAccess.Migrations
                         {
                             Id = new Guid("44444444-4444-4444-4444-444444444444"),
                             IsCompleted = false,
-                            OrderDate = new DateTime(2024, 10, 27, 17, 15, 40, 167, DateTimeKind.Utc).AddTicks(8406)
+                            OrderDate = new DateTime(2024, 10, 27, 17, 4, 15, 510, DateTimeKind.Utc).AddTicks(3351)
                         },
                         new
                         {
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
                             IsCompleted = true,
-                            OrderDate = new DateTime(2024, 10, 29, 17, 15, 40, 167, DateTimeKind.Utc).AddTicks(8454)
+                            OrderDate = new DateTime(2024, 10, 29, 17, 4, 15, 510, DateTimeKind.Utc).AddTicks(3394)
                         });
                 });
 

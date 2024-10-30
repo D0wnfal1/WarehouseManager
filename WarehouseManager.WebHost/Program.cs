@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using WarehouseManager.BusinessLogic;
 using WarehouseManager.BusinessLogic.Services;
 using WarehouseManager.DataAccess;
-using WarehouseManager.DataAccess.Repository;
+using WarehouseManager.DataAccess.EfRepository;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

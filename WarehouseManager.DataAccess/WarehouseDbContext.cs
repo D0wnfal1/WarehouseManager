@@ -18,6 +18,19 @@ namespace WarehouseManager.DataAccess
 		{
 			base.OnModelCreating(modelBuilder);
 
+			modelBuilder.Entity<OrderItem>()
+				.HasKey(oi => oi.Id);
+
+			modelBuilder.Entity<OrderItem>()
+				.HasOne(oi => oi.Order)
+				.WithMany(o => o.Items)
+				.HasForeignKey(oi => oi.OrderId);
+
+			modelBuilder.Entity<OrderItem>()
+				.HasOne(oi => oi.Product)
+				.WithMany()
+				.HasForeignKey(oi => oi.ProductId);
+
 			modelBuilder.Entity<Product>().HasData(
 				new Product
 				{
@@ -93,5 +106,6 @@ namespace WarehouseManager.DataAccess
 				}
 			);
 		}
+
 	}
 }

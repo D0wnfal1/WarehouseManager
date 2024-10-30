@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WarehouseManager.DataAccess.Models;
-using WarehouseManager.DataAccess.Repository;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 
 namespace WarehouseManager.BusinessLogic.Services
 {
-	public class ProductService : IProductService
+    public class ProductService : IProductService
 	{
 		private readonly IUnitOfWork _unitOfWork;
 

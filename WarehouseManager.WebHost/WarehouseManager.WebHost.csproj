@@ -21,8 +21,4 @@
     <ProjectReference Include="..\WarehouseManager.DataAccess\WarehouseManager.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

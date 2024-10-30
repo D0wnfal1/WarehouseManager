@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 
-namespace WarehouseManager.DataAccess.Repository
+namespace WarehouseManager.DataAccess.EfRepository
 {
     public class EfRepository<T> : IRepository<T> where T : class
 	{
@@ -31,6 +32,13 @@ namespace WarehouseManager.DataAccess.Repository
 		{
 			_context.Set<T>().Remove(entity);
 			await _context.SaveChangesAsync();
+		}
+
+		public async Task<IEnumerable<Order>> GetAllWithItemsAsync()
+		{
+			return await _context.Orders
+				.Include(o => o.Items) 
+				.ToListAsync();
 		}
 	}
 }

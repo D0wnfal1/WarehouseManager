@@ -1,7 +1,8 @@
 ﻿
 using WarehouseManager.DataAccess.Models;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 
-namespace WarehouseManager.DataAccess.Repository
+namespace WarehouseManager.DataAccess.EfRepository
 {
     public class UnitOfWork : IUnitOfWork
 	{

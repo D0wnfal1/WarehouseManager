@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WarehouseManager.DataAccess.Models;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 using WarehouseManager.DataAccess.Repository;
 
 namespace WarehouseManager.BusinessLogic.Services
 {
-	public class OrderService : IOrderService
+    public class OrderService : IOrderService
 	{
 		private readonly IUnitOfWork _unitOfWork;
 
@@ -17,7 +18,7 @@ namespace WarehouseManager.BusinessLogic.Services
 
 		public async Task<IEnumerable<Order>> GetAllOrdersAsync()
 		{
-			return await _unitOfWork.Orders.GetAllAsync();
+			return await _unitOfWork.Orders.GetAllWithItemsAsync(); 
 		}
 
 		public async Task<Order> GetOrderByIdAsync(Guid id)
