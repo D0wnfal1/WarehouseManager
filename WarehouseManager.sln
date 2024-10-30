@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManager.WebHost", "WarehouseManager.WebHost\WarehouseManager.WebHost.csproj", "{82D7E412-B13C-4D27-B4FB-C5F9B65D93B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManager.DataAccess", "WarehouseManager.DataAccess\WarehouseManager.DataAccess.csproj", "{F631550E-630B-4967-A0E0-BC12F44C8FD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82D7E412-B13C-4D27-B4FB-C5F9B65D93B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D7E412-B13C-4D27-B4FB-C5F9B65D93B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D7E412-B13C-4D27-B4FB-C5F9B65D93B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D7E412-B13C-4D27-B4FB-C5F9B65D93B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F631550E-630B-4967-A0E0-BC12F44C8FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F631550E-630B-4967-A0E0-BC12F44C8FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F631550E-630B-4967-A0E0-BC12F44C8FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F631550E-630B-4967-A0E0-BC12F44C8FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61FC99B7-EBFE-4C35-921F-20B4D5DCBB85}
+	EndGlobalSection
+EndGlobal

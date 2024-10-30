@@ -1,0 +1,6 @@
+@WarehouseManager.WebHost_HostAddress = http://localhost:5094
+
+GET {{WarehouseManager.WebHost_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
