@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WarehouseManager.BusinessLogic.Services;
 using WarehouseManager.DataAccess.Models;
 using WarehouseManager.WebHost.DTOs;
+using WarehouseManager.BusinessLogic.Services;
 
 [ApiController]
 [Route("api/[controller]")]

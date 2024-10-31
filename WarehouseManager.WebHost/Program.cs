@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WarehouseManager.BusinessLogic;
-using WarehouseManager.BusinessLogic.Services;
 using WarehouseManager.DataAccess;
 using WarehouseManager.DataAccess.EfRepository;
 using WarehouseManager.DataAccess.Repositories.IRepositories;
 using System.Reflection;
+using WarehouseManager.BusinessLogic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,14 +38,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI(options =>
-	{
-		options.SwaggerEndpoint("/swagger/v1/swagger.json", "Warehouse Manager API v1");
-	});
+	app.UseDeveloperExceptionPage();
+	
 }
+app.UseSwagger();
 
-app.UseHttpsRedirection();
+app.UseSwaggerUI(c =>
+{
+	c.SwaggerEndpoint("/swagger/v1/swagger.json", "WarehouseManager API V1");
+	c.RoutePrefix = string.Empty;
+});
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
