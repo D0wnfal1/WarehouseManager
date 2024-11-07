@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // Configure Database
 builder.Services.AddDbContext<WarehouseDbContext>(options =>
 {
-	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+	options.UseNpgsql(builder.Configuration.GetConnectionString("WareHouseManagerDb"));
 });
 
 // Dependency Injection for Services
@@ -35,6 +35,18 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<WarehouseDbContext>();
+	if (context.Database.CanConnect())
+	{
+		context.Database.EnsureDeleted();
+	}
+	context.Database.EnsureCreated();
+
+    context.SaveChanges();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -46,7 +58,6 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
 	c.SwaggerEndpoint("/swagger/v1/swagger.json", "WarehouseManager API V1");
-	c.RoutePrefix = string.Empty;
 });
 //app.UseHttpsRedirection();
 app.UseAuthorization();

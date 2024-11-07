@@ -1,21 +1,22 @@
 services:
   warehousemanager-webhost:
     build:
-      context: .
       dockerfile: WarehouseManager.WebHost/Dockerfile
+    restart: always
     ports:
       - "5580:8080"
     environment:
+      - "ConnectionStrings:WareHouseManagerDb=Host=warehouse-manager-db;Port=5432;Database=WarehouseManagerDb;Username=postgres;Password=147258369"
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - postgres
+      - warehouse-manager-db
 
-  postgres:
-    image: postgres:15
+  warehouse-manager-db:
+    image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: warehouse_manager_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      - POSTGRES_PASSWORD=147258369
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=WarehouseManagerDb
     ports:
       - "5432:5432"
