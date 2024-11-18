@@ -33,6 +33,16 @@ builder.Services.AddSwaggerGen(options =>
 	options.SwaggerDoc("v1", new() { Title = "Warehouse Manager API", Version = "v1" });
 });
 
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("ClientApp", builder =>
+	{
+		builder.WithOrigins("http://localhost:4200")
+		.AllowAnyMethod()
+		.AllowAnyHeader();
+	});
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -61,6 +71,9 @@ app.UseSwaggerUI(c =>
 });
 //app.UseHttpsRedirection();
 app.UseAuthorization();
+
+app.UseCors("ClientApp");
+
 app.MapControllers();
 
 app.Run();
