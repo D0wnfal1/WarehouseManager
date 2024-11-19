@@ -44,7 +44,7 @@ public class ProductController : ControllerBase
 	{
 		var product = new Product
 		{
-			Id = Guid.NewGuid(),
+			Id = productDto.Id,
 			Name = productDto.Name,
 			Stock = productDto.Stock,
 			Price = productDto.Price,
@@ -62,7 +62,7 @@ public class ProductController : ControllerBase
 	/// <response code="200">Returns the product.</response>
 	/// <response code="404">If the product is not found.</response>
 	[HttpGet("{id}")]
-	public async Task<IActionResult> GetProductById(Guid id)
+	public async Task<IActionResult> GetProductById(int id)
 	{
 		var product = await _productService.GetProductByIdAsync(id);
 		if (product == null) return NotFound();
@@ -86,7 +86,7 @@ public class ProductController : ControllerBase
 	/// <response code="204">If the product was successfully updated.</response>
 	/// <response code="404">If the product is not found.</response>
 	[HttpPut("{id}")]
-	public async Task<IActionResult> UpdateProduct(Guid id, [FromForm] ProductDto productDto)
+	public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductDto productDto)
 	{
 		var product = await _productService.GetProductByIdAsync(id);
 		if (product == null) return NotFound();
@@ -106,7 +106,7 @@ public class ProductController : ControllerBase
 	/// <param name="id">Product ID.</param>
 	/// <response code="204">If the product was successfully deleted.</response>
 	[HttpDelete("{id}")]
-	public async Task<IActionResult> DeleteProduct(Guid id)
+	public async Task<IActionResult> DeleteProduct(int id)
 	{
 		await _productService.DeleteProductAsync(id);
 		return NoContent();

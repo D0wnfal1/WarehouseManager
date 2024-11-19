@@ -34,7 +34,8 @@ public class OrderController : ControllerBase
 				ProductId = i.ProductId,
 				Quantity = i.Quantity
 			}).ToList()
-		});
+		}).ToList();
+
 		return Ok(orderDtos);
 	}
 
@@ -45,22 +46,39 @@ public class OrderController : ControllerBase
 	/// <returns>OrderDto object of the created order.</returns>
 	/// <response code="201">Returns the created order.</response>
 	[HttpPost]
-	public async Task<IActionResult> CreateOrder([FromForm] OrderDto orderDto)
+	public async Task<IActionResult> CreateOrder([FromBody] OrderDto orderDto)
 	{
+		if (orderDto == null || !orderDto.Items.Any())
+		{
+			return BadRequest(new { Error = "Order must contain at least one item." });
+		}
+
 		var order = new Order
 		{
-			Id = Guid.NewGuid(),
-			OrderDate = DateTime.UtcNow,
-			IsCompleted = false,
+			OrderDate = orderDto.OrderDate,
+			IsCompleted = orderDto.IsCompleted,
 			Items = orderDto.Items.Select(i => new OrderItem
 			{
-				Id = Guid.NewGuid(),
 				ProductId = i.ProductId,
 				Quantity = i.Quantity
 			}).ToList()
 		};
+
 		await _orderService.CreateOrderAsync(order);
-		return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, orderDto);
+		var createdOrderDto = new OrderDto
+		{
+			Id = order.Id,
+			OrderDate = order.OrderDate,
+			IsCompleted = order.IsCompleted,
+			Items = order.Items.Select(i => new OrderItemDto
+			{
+				Id = i.Id,
+				ProductId = i.ProductId,
+				Quantity = i.Quantity
+			}).ToList()
+		};
+
+		return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, createdOrderDto);
 	}
 
 	/// <summary>
@@ -71,7 +89,7 @@ public class OrderController : ControllerBase
 	/// <response code="200">Returns the order.</response>
 	/// <response code="404">If the order is not found.</response>
 	[HttpGet("{id}")]
-	public async Task<IActionResult> GetOrderById(Guid id)
+	public async Task<IActionResult> GetOrderById(int id)
 	{
 		var order = await _orderService.GetOrderByIdAsync(id);
 		if (order == null) return NotFound();
@@ -88,6 +106,7 @@ public class OrderController : ControllerBase
 			}).ToList(),
 			IsCompleted = order.IsCompleted
 		};
+
 		return Ok(orderDto);
 	}
 
@@ -97,7 +116,7 @@ public class OrderController : ControllerBase
 	/// <param name="id">Order ID.</param>
 	/// <response code="204">If the order was successfully completed.</response>
 	[HttpPut("{id}/complete")]
-	public async Task<IActionResult> CompleteOrder(Guid id)
+	public async Task<IActionResult> CompleteOrder(int id)
 	{
 		await _orderService.CompleteOrderAsync(id);
 		return NoContent();
@@ -109,7 +128,7 @@ public class OrderController : ControllerBase
 	/// <param name="id">Order ID.</param>
 	/// <response code="204">If the order was successfully deleted.</response>
 	[HttpDelete("{id}")]
-	public async Task<IActionResult> DeleteOrder(Guid id)
+	public async Task<IActionResult> DeleteOrder(int id)
 	{
 		await _orderService.DeleteOrderAsync(id);
 		return NoContent();

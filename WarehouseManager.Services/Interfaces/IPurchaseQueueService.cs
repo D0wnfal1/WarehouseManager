@@ -8,8 +8,8 @@ namespace WarehouseManager.BusinessLogic.Services
 	public interface IPurchaseQueueService
 	{
 		Task<IEnumerable<PurchaseQueue>> GetAllPurchaseQueuesAsync();
-		Task<PurchaseQueue> GetPurchaseQueueByIdAsync(Guid id);
+		Task<PurchaseQueue> GetPurchaseQueueByIdAsync(int id);
 		Task AddToPurchaseQueueAsync(PurchaseQueue purchaseQueue);
-		Task RemoveFromPurchaseQueueAsync(Guid id);
+		Task RemoveFromPurchaseQueueAsync(int id);
 	}
 }

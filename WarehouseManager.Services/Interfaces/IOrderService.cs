@@ -8,9 +8,9 @@ namespace WarehouseManager.BusinessLogic.Services
 	public interface IOrderService
 	{
 		Task<IEnumerable<Order>> GetAllOrdersAsync();
-		Task<Order> GetOrderByIdAsync(Guid id);
+		Task<Order> GetOrderByIdAsync(int id);
 		Task CreateOrderAsync(Order order);
-		Task CompleteOrderAsync(Guid orderId);
-		Task DeleteOrderAsync(Guid id);
+		Task CompleteOrderAsync(int orderId);
+		Task DeleteOrderAsync(int id);
 	}
 }

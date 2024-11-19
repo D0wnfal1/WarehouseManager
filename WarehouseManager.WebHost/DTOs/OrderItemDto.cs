@@ -8,12 +8,12 @@
 		/// <summary>
 		/// Gets or sets the unique identifier of the order item.
 		/// </summary>
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 
 		/// <summary>
 		/// Gets or sets the unique identifier of the product in the order.
 		/// </summary>
-		public Guid ProductId { get; set; }
+		public int ProductId { get; set; }
 
 		/// <summary>
 		/// Gets or sets the quantity of the product ordered.
@@ -21,3 +21,4 @@
 		public int Quantity { get; set; }
 	}
 }
+	

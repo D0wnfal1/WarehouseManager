@@ -6,9 +6,9 @@
 	public class OrderDto
 	{
 		/// <summary>
-		/// Gets or sets the unique identifier of the order.
+		/// Gets or sets the unique identifier of the order (optional for creation).
 		/// </summary>
-		public Guid Id { get; set; }
+		public int? Id { get; set; } // Nullable для создания нового заказа.
 
 		/// <summary>
 		/// Gets or sets the date when the order was created.

@@ -4,10 +4,10 @@ namespace WarehouseManager.DataAccess.Models
 {
 	public class PurchaseQueue
 	{
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 
 		[Required]
-		public Guid ProductId { get; set; }
+		public int ProductId { get; set; }
 
 		[Required]
 		public Product Product { get; set; }

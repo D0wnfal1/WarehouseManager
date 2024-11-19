@@ -4,7 +4,7 @@ using WarehouseManager.DataAccess.Models;
 
 public class Order
 {
-	public Guid Id { get; set; }
+	public int Id { get; set; }
 
 	private DateTime _orderDate;
 
@@ -21,8 +21,7 @@ public class Order
 		}
 	}
 
-	[Required]
-	public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
+	public ICollection<OrderItem> Items { get; set; }
 
 	public bool IsCompleted { get; set; }
 }

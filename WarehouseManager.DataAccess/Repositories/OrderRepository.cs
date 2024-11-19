@@ -11,7 +11,7 @@ namespace WarehouseManager.DataAccess.EfRepository
 			_context = context;
 		}
 
-		public async Task<Order> GetByIdWithItemsAsync(Guid id)
+		public async Task<Order> GetByIdWithItemsAsync(int id)
 		{
 			return await _context.Orders
 				.Include(o => o.Items)

@@ -17,7 +17,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			return await _unitOfWork.Products.GetAllAsync();
 		}
 
-		public async Task<Product> GetProductByIdAsync(Guid id)
+		public async Task<Product> GetProductByIdAsync(int id)
 		{
 			return await _unitOfWork.Products.GetByIdAsync(id);
 		}
@@ -32,7 +32,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			await _unitOfWork.Products.UpdateAsync(product);
 		}
 
-		public async Task DeleteProductAsync(Guid id)
+		public async Task DeleteProductAsync(int id)
 		{
 			var product = await _unitOfWork.Products.GetByIdAsync(id);
 			if (product != null)

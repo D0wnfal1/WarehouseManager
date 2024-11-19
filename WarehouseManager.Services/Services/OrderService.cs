@@ -16,7 +16,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			return await _unitOfWork.Orders.GetAllWithItemsAsync(); 
 		}
 
-		public async Task<Order> GetOrderByIdAsync(Guid id)
+		public async Task<Order> GetOrderByIdAsync(int id)
 		{
 			return await _unitOfWork.Orders.GetByIdWithItemsAsync(id);
 		}
@@ -26,7 +26,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			await _unitOfWork.Orders.AddAsync(order);
 		}
 
-		public async Task CompleteOrderAsync(Guid orderId)
+		public async Task CompleteOrderAsync(int orderId)
 		{
 			var order = await _unitOfWork.Orders.GetByIdAsync(orderId);
 			if (order != null)
@@ -36,7 +36,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			}
 		}
 
-		public async Task DeleteOrderAsync(Guid id)
+		public async Task DeleteOrderAsync(int id)
 		{
 			var order = await _unitOfWork.Orders.GetByIdAsync(id);
 			if (order != null)

@@ -53,7 +53,7 @@ public class PurchaseQueueController : ControllerBase
 	{
 		var purchaseQueue = new PurchaseQueue
 		{
-			Id = Guid.NewGuid(),
+			Id = purchaseQueueDto.Id,
 			ProductId = purchaseQueueDto.ProductId,
 			Quantity = purchaseQueueDto.Quantity
 		};
@@ -76,7 +76,7 @@ public class PurchaseQueueController : ControllerBase
 	///
 	/// </remarks>
 	[HttpGet("{id}")]
-	public async Task<IActionResult> GetPurchaseQueueById(Guid id)
+	public async Task<IActionResult> GetPurchaseQueueById(int id)
 	{
 		var purchaseQueue = await _purchaseQueueService.GetPurchaseQueueByIdAsync(id);
 		if (purchaseQueue == null) return NotFound();
@@ -105,7 +105,7 @@ public class PurchaseQueueController : ControllerBase
 	///
 	/// </remarks>
 	[HttpDelete("{id}")]
-	public async Task<IActionResult> RemoveFromPurchaseQueue(Guid id)
+	public async Task<IActionResult> RemoveFromPurchaseQueue(int id)
 	{
 		await _purchaseQueueService.RemoveFromPurchaseQueueAsync(id);
 		return NoContent();

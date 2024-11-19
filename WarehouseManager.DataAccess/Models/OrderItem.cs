@@ -4,16 +4,16 @@ namespace WarehouseManager.DataAccess.Models
 {
 	public class OrderItem
 	{
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 
 		[Required]
-		public Guid OrderId { get; set; }
+		public int OrderId { get; set; }
 
 		[Required]
 		public Order Order { get; set; }
 
 		[Required]
-		public Guid ProductId { get; set; }
+		public int ProductId { get; set; }
 
 		[Required]
 		public Product Product { get; set; }

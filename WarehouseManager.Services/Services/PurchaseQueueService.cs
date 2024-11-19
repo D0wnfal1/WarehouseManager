@@ -17,7 +17,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			return await _unitOfWork.PurchaseQueues.GetAllAsync();
 		}
 
-		public async Task<PurchaseQueue> GetPurchaseQueueByIdAsync(Guid id)
+		public async Task<PurchaseQueue> GetPurchaseQueueByIdAsync(int id)
 		{
 			return await _unitOfWork.PurchaseQueues.GetByIdAsync(id);
 		}
@@ -27,7 +27,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			await _unitOfWork.PurchaseQueues.AddAsync(purchaseQueue);
 		}
 
-		public async Task RemoveFromPurchaseQueueAsync(Guid id)
+		public async Task RemoveFromPurchaseQueueAsync(int id)
 		{
 			var purchaseQueue = await _unitOfWork.PurchaseQueues.GetByIdAsync(id);
 			if (purchaseQueue != null)
