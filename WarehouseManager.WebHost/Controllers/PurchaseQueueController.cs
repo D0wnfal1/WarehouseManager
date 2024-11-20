@@ -8,10 +8,12 @@ using WarehouseManager.BusinessLogic.Services;
 public class PurchaseQueueController : ControllerBase
 {
 	private readonly IPurchaseQueueService _purchaseQueueService;
+	private readonly IProductService _productService;
 
-	public PurchaseQueueController(IPurchaseQueueService purchaseQueueService)
+	public PurchaseQueueController(IPurchaseQueueService purchaseQueueService, IProductService productService)
 	{
 		_purchaseQueueService = purchaseQueueService;
+		_productService = productService;
 	}
 
 	/// <summary>
@@ -58,7 +60,18 @@ public class PurchaseQueueController : ControllerBase
 			Quantity = purchaseQueueDto.Quantity
 		};
 
+		var product = await _productService.GetProductByIdAsync(purchaseQueue.ProductId);
+		if (product == null)
+		{
+			return NotFound("Product not found.");
+		}
+
+		product.IsInPurchaseQueue = true;
+
+		await _productService.UpdateProductAsync(product);
+
 		await _purchaseQueueService.AddToPurchaseQueueAsync(purchaseQueue);
+
 		return CreatedAtAction(nameof(GetPurchaseQueueById), new { id = purchaseQueue.Id }, purchaseQueueDto);
 	}
 
@@ -104,12 +117,27 @@ public class PurchaseQueueController : ControllerBase
 	///     DELETE /api/purchasequeue/abcd1234-5678-90ef-1234-567890abcdef
 	///
 	/// </remarks>
+	
 	[HttpDelete("{id}")]
 	public async Task<IActionResult> RemoveFromPurchaseQueue(int id)
 	{
+		var purchaseQueue = await _purchaseQueueService.GetPurchaseQueueByIdAsync(id);
+		if (purchaseQueue == null)
+		{
+			return NotFound();
+		}
+
+		var product = await _productService.GetProductByIdAsync(purchaseQueue.ProductId);
+		if (product != null)
+		{
+			product.IsInPurchaseQueue = false;
+			await _productService.UpdateProductAsync(product); 
+		}
+
 		await _purchaseQueueService.RemoveFromPurchaseQueueAsync(id);
 		return NoContent();
 	}
+
 	/// <summary>
 	/// Retrieves a list of products with low stock levels.
 	/// </summary>

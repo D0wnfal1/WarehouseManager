@@ -1,14 +1,17 @@
-﻿using WarehouseManager.DataAccess.Repositories.IRepositories;
+﻿using WarehouseManager.DataAccess.Models;
+using WarehouseManager.DataAccess.Repositories.IRepositories;
 
 namespace WarehouseManager.BusinessLogic.Services
 {
     public class OrderService : IOrderService
 	{
 		private readonly IUnitOfWork _unitOfWork;
+		private readonly IProductService _productService;
 
-		public OrderService(IUnitOfWork unitOfWork)
+		public OrderService(IUnitOfWork unitOfWork, IProductService productService)
 		{
 			_unitOfWork = unitOfWork;
+			_productService = productService;
 		}
 
 		public async Task<IEnumerable<Order>> GetAllOrdersAsync()
@@ -27,14 +30,43 @@ namespace WarehouseManager.BusinessLogic.Services
 			await _unitOfWork.SaveChangesAsync();
 		}
 
-		public async Task CompleteOrderAsync(int orderId)
+		public async Task<Result> CompleteOrderAsync(int orderId)
 		{
-			var order = await _unitOfWork.Orders.GetByIdAsync(orderId);
-			if (order != null)
+			var order = await _unitOfWork.Orders.GetByIdWithItemsAsync(orderId);
+
+			if (order == null)
 			{
-				order.IsCompleted = true;
-				await _unitOfWork.Orders.UpdateAsync(order);
+				return Result.Failure($"Order with ID {orderId} does not exist.");
 			}
+
+			if (order.IsCompleted)
+			{
+				return Result.Failure($"Order with ID {orderId} is already completed.");
+			}
+
+			foreach (var item in order.Items)
+			{
+				var product = await _productService.GetProductByIdAsync(item.ProductId);
+				if (product == null)
+				{
+					return Result.Failure($"Product with ID {item.ProductId} does not exist.");
+				}
+
+				if (product.Stock < item.Quantity)
+				{
+					return Result.Failure(
+						$"Not enough stock for product ID {product.Id}. Required: {item.Quantity}, Available: {product.Stock}."
+					);
+				}
+
+				product.Stock -= item.Quantity;
+				await _productService.UpdateProductAsync(product);
+			}
+
+			order.IsCompleted = true;
+			await _unitOfWork.SaveChangesAsync();
+
+			return Result.Success();
 		}
 
 		public async Task DeleteOrderAsync(int id)

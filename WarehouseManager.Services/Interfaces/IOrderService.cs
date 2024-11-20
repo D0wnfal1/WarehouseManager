@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using WarehouseManager.DataAccess.Models;
+﻿using WarehouseManager.DataAccess.Models;
 
 namespace WarehouseManager.BusinessLogic.Services
 {
@@ -10,7 +7,7 @@ namespace WarehouseManager.BusinessLogic.Services
 		Task<IEnumerable<Order>> GetAllOrdersAsync();
 		Task<Order> GetOrderByIdAsync(int id);
 		Task CreateOrderAsync(Order order);
-		Task CompleteOrderAsync(int orderId);
+		Task<Result> CompleteOrderAsync(int orderId);
 		Task DeleteOrderAsync(int id);
 	}
 }

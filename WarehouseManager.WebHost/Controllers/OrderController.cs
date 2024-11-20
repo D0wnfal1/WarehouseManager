@@ -115,12 +115,21 @@ public class OrderController : ControllerBase
 	/// </summary>
 	/// <param name="id">Order ID.</param>
 	/// <response code="204">If the order was successfully completed.</response>
+	/// <response code="400">If there are not enough products in stock.</response>
 	[HttpPut("{id}/complete")]
 	public async Task<IActionResult> CompleteOrder(int id)
 	{
-		await _orderService.CompleteOrderAsync(id);
+		var result = await _orderService.CompleteOrderAsync(id);
+
+		if (!result.IsSuccess)
+		{
+			return BadRequest(new { Error = result.ErrorMessage });
+		}
+
 		return NoContent();
 	}
+
+
 
 	/// <summary>
 	/// Deletes an order by its ID.
