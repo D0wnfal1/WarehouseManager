@@ -25,11 +25,13 @@ namespace WarehouseManager.BusinessLogic.Services
 		public async Task AddProductAsync(Product product)
 		{
 			await _unitOfWork.Products.AddAsync(product);
+			await _unitOfWork.SaveChangesAsync();
 		}
 
 		public async Task UpdateProductAsync(Product product)
 		{
 			await _unitOfWork.Products.UpdateAsync(product);
+			await _unitOfWork.SaveChangesAsync();
 		}
 
 		public async Task DeleteProductAsync(int id)
@@ -39,6 +41,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			{
 				await _unitOfWork.Products.DeleteAsync(product);
 			}
+			await _unitOfWork.SaveChangesAsync();
 		}
 	}
 }

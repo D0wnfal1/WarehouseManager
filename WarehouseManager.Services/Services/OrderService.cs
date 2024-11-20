@@ -24,6 +24,7 @@ namespace WarehouseManager.BusinessLogic.Services
 		public async Task CreateOrderAsync(Order order)
 		{
 			await _unitOfWork.Orders.AddAsync(order);
+			await _unitOfWork.SaveChangesAsync();
 		}
 
 		public async Task CompleteOrderAsync(int orderId)
@@ -43,6 +44,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			{
 				await _unitOfWork.Orders.DeleteAsync(order);
 			}
+			await _unitOfWork.SaveChangesAsync();
 		}
 	}
 }

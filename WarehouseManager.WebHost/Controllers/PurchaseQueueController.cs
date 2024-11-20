@@ -49,7 +49,7 @@ public class PurchaseQueueController : ControllerBase
 	///
 	/// </remarks>
 	[HttpPost]
-	public async Task<IActionResult> AddToPurchaseQueue([FromForm] PurchaseQueueDto purchaseQueueDto)
+	public async Task<IActionResult> AddToPurchaseQueue(PurchaseQueueDto purchaseQueueDto)
 	{
 		var purchaseQueue = new PurchaseQueue
 		{

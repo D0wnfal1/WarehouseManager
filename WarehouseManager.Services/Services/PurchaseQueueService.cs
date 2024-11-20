@@ -25,6 +25,7 @@ namespace WarehouseManager.BusinessLogic.Services
 		public async Task AddToPurchaseQueueAsync(PurchaseQueue purchaseQueue)
 		{
 			await _unitOfWork.PurchaseQueues.AddAsync(purchaseQueue);
+			await _unitOfWork.SaveChangesAsync();
 		}
 
 		public async Task RemoveFromPurchaseQueueAsync(int id)
@@ -34,6 +35,7 @@ namespace WarehouseManager.BusinessLogic.Services
 			{
 				await _unitOfWork.PurchaseQueues.DeleteAsync(purchaseQueue);
 			}
+			await _unitOfWork.SaveChangesAsync();
 		}
 	}
 }

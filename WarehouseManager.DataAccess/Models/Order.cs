@@ -4,6 +4,7 @@ using WarehouseManager.DataAccess.Models;
 
 public class Order
 {
+	[Key]
 	public int Id { get; set; }
 
 	private DateTime _orderDate;

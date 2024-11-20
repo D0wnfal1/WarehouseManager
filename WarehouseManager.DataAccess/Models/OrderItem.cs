@@ -4,6 +4,7 @@ namespace WarehouseManager.DataAccess.Models
 {
 	public class OrderItem
 	{
+		[Key]
 		public int Id { get; set; }
 
 		[Required]
