@@ -14,13 +14,13 @@ namespace WarehouseManager.DataAccess.EfRepository
 			Products = new EfRepository<Product>(_context);
 			Orders = new OrderRepository(_context);
 			OrderItems = new EfRepository<OrderItem>(_context);
-			PurchaseQueues = new EfRepository<PurchaseQueue>(_context);
+			PurchaseQueues = new PurchaseQueueRepository(_context);
 		}
 
 		public IRepository<Product> Products { get; }
 		public IOrderRepository Orders { get; }
 		public IRepository<OrderItem> OrderItems { get; }
-		public IRepository<PurchaseQueue> PurchaseQueues { get; }
+		public IPurchaseQueueRepository PurchaseQueues { get; }
 
 		public async Task<int> SaveChangesAsync()
 		{

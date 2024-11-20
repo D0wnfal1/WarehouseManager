@@ -110,4 +110,32 @@ public class PurchaseQueueController : ControllerBase
 		await _purchaseQueueService.RemoveFromPurchaseQueueAsync(id);
 		return NoContent();
 	}
+	/// <summary>
+	/// Retrieves a list of products with low stock levels.
+	/// </summary>
+	/// <returns>A list of products with low stock levels</returns>
+	[HttpGet("low-stock-products")]
+	public async Task<ActionResult<List<Product>>> GetLowStockProducts()
+	{
+		var lowStockProducts = await _purchaseQueueService.GetLowStockProductsAsync();
+		return Ok(lowStockProducts);
+	}
+
+	/// <summary>
+	/// Retrieves the purchase queue for a product by its ID.
+	/// </summary>
+	/// <param name="productId">The ID of the product</param>
+	/// <returns>Information about the purchase queue for the product</returns>
+	/// <response code="200">Returns the purchase queue for the product</response>
+	/// <response code="404">The purchase queue for the product was not found</response>
+	[HttpGet("purchase-queue/{productId}")]
+	public async Task<ActionResult<PurchaseQueue>> GetPurchaseQueue(int productId)
+	{
+		var purchaseQueue = await _purchaseQueueService.GetPurchaseQueueByProductIdAsync(productId);
+		if (purchaseQueue == null)
+		{
+			return NotFound();
+		}
+		return Ok(purchaseQueue);
+	}
 }

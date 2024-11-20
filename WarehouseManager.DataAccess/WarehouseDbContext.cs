@@ -36,7 +36,7 @@ namespace WarehouseManager.DataAccess
 					Name = "Laptop",
 					Stock = 10,
 					Price = 999.99m,
-					IsInPurchaseQueue = false
+					IsInPurchaseQueue = true
 				},
 				new Product
 				{
@@ -44,7 +44,7 @@ namespace WarehouseManager.DataAccess
 					Name = "Smartphone",
 					Stock = 5,
 					Price = 699.99m,
-					IsInPurchaseQueue = true
+					IsInPurchaseQueue = false
 				},
 				new Product
 				{
@@ -52,7 +52,7 @@ namespace WarehouseManager.DataAccess
 					Name = "Headphones",
 					Stock = 0,
 					Price = 199.99m,
-					IsInPurchaseQueue = true
+					IsInPurchaseQueue = false
 				}
 			);
 

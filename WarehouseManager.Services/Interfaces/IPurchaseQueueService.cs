@@ -11,5 +11,7 @@ namespace WarehouseManager.BusinessLogic.Services
 		Task<PurchaseQueue> GetPurchaseQueueByIdAsync(int id);
 		Task AddToPurchaseQueueAsync(PurchaseQueue purchaseQueue);
 		Task RemoveFromPurchaseQueueAsync(int id);
+		Task<List<Product>> GetLowStockProductsAsync();
+		Task<PurchaseQueue> GetPurchaseQueueByProductIdAsync(int productId);
 	}
 }

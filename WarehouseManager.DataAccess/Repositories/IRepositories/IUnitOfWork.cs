@@ -7,7 +7,7 @@ namespace WarehouseManager.DataAccess.Repositories.IRepositories
         IRepository<Product> Products { get; }
         IOrderRepository Orders { get; }
         IRepository<OrderItem> OrderItems { get; }
-        IRepository<PurchaseQueue> PurchaseQueues { get; }
+        IPurchaseQueueRepository PurchaseQueues { get; }
         Task<int> SaveChangesAsync();
     }
 }
